@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <input type="text"/><br><br>
+    <input type="text"/><br><br>
+    <input type="text"/><br><br>
+    <input type="text"/><br><br>
+    <input type="text"/><br><br>
+    <input type="text"/><br><br>
+
+    <button>赋值</button><br><br>
+    <button>取值</button><br><br>
+
+    <script>
+        //for循环赋值
+        //老三步
+        var inpArr = document.getElementsByTagName("input");
+        var btnArr = document.getElementsByTagName("button");
+
+        //赋值
+        btnArr[0].onclick = function () {
+            //循环为每一个input赋值
+            for(var i=0;i<inpArr.length;i++){
+                inpArr[i].value = i;
+            }
+        }
+
+
+        //获取值
+        btnArr[1].onclick = function () {
+            //循环获取nput的值赋值为一个数组
+            var newArr = [];
+            for(var i=0;i<inpArr.length;i++){
+                newArr.push(inpArr[i].value);
+            }
+            console.log(newArr.join(" "));
+        }
+
+
+    </script>
+</body>
+</html>

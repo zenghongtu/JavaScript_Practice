@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        button {
+            margin: 10px;
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .current {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+
+    <script>
+        //需求：鼠标放到哪个button上，改button变成黄色背景（添加类）
+        //步骤：
+        //1.获取事件源
+        //2.绑定事件
+        //3.书写事件驱动程序
+
+        //1.获取事件源
+        var btnArr = document.getElementsByTagName("button");
+        //2.绑定事件
+        for(var i=0;i<btnArr.length;i++){
+            btnArr[i].onmouseover = function () {
+                //排他思想（干掉所有人，剩下我一个）
+                //排他思想是和for循环连用
+                for(var j=0;j<btnArr.length;j++){
+                    btnArr[j].className = "";
+                }
+                this.className = "current";
+            }
+        }
+        //3.书写事件驱动程序
+
+
+    </script>
+
+</body>
+</html>

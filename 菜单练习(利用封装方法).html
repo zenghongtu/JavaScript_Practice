@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #list li {
+            list-style-type: none;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            background-color:beige;
+            text-align: center;
+            float: left;
+            margin-left: 5px;
+        }
+
+        #list li.current {
+            background-color: burlywood;
+        }
+
+        #list li a {
+            text-decoration: none;
+        }
+    </style>
+    <script src="tools.js"></script>
+    <script>
+        window.onload = function () {
+            //需求：点击a链接，让a链接对应的li标签添加类。
+            //思路：点击a链接，让他的父亲添加类，其他的li标签类名清空。
+            //步骤：
+            //1.获取事件源
+            //2.绑定事件
+            //3.书写事件驱动程序
+
+
+            //1.获取事件源
+            var ul = getEle("list");
+            var aArr = ul.getElementsByTagName("a");
+
+            for(var i=0;i<aArr.length;i++){
+                aArr[i].onclick = function () {
+                    //点击哪个a链接，让他的父亲添加类
+                    this.parentNode.className = "current";
+                    //设置他的父元素的其他所有兄弟节点类名为空
+                    var otherArr = getAllSiblings(this.parentNode);
+                    for(var j=0;j<otherArr.length;j++){
+                        otherArr[j].className = "";
+                    }
+                }
+            }
+
+//            //1.获取事件源
+//            var ul = getEle("list");
+//            var liArr = ul.children;
+//            //2.绑定事件
+//            for(var i=0;i<liArr.length;i++){
+//                var a = getFirstNode(liArr[i]);
+//                a.onclick = function () {
+//                    //3.书写事件驱动程序
+//                    //排他思想
+//                    for(var j=0;j<liArr.length;j++){
+//                        liArr[j].className = "";
+//                    }
+//                    this.parentNode.className = "current";
+//                }
+//            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="menu">
+        <ul id="list">
+            <li class="current"><a href="#">首页</a></li>
+            <li><a href="javascript:void(0)">播客</a></li>
+            <li><a href="javascript:void(0)">博客</a></li>
+            <li><a href="javascript:void(0)">相册</a></li>
+            <li><a href="javascript:void(0)">关于</a></li>
+            <li><a href="javascript:void(0)">帮助</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .wrong {
+            border: 2px solid red;
+        }
+        .right {
+            border: 2px solid #91B81D;
+        }
+    </style>
+</head>
+<body>
+
+    账号：<input type="text" onblur="fn(this)"/><br><br>
+    密码：<input type="password" onblur="fn(this)"/>
+
+    <script>
+        //需求：失去焦点的时候判断input按钮中的值，如果账号或密码在6-12个字符之间通过，否则报错。
+        //步骤：
+        //1.获取事件源
+        //2.绑定事件
+        //3.书写事件驱动程序
+
+
+        //3.书写事件驱动程序
+        function fn(){
+            //html中的input标签行内调用function的时候,是先通过window调用的function，所以打印this等于打印window
+//            console.log(this)
+            //只有传递的this才指的是标签本身。
+//            console.log(aaa)
+           console.log(arguments[0].value)
+	           }
+        //     if(aaa.value.length < 6 || aaa.value.length>12){
+        //         aaa.className = "wrong";
+        //     }else{
+        //         aaa.className = "right";
+        //     }
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul {
+            width: 1210px;
+            margin: 100px auto;
+        }
+        li {
+            height: 34px;
+            cursor: pointer;
+            font: 500 16px/34px "simsun";
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>北京股指  3063.31-22.18 (-0.72%)</li>
+        <li>上海股指  3063.31-22.18 (-0.72%)</li>
+        <li>广州股指  3063.31-22.18 (-0.72%)</li>
+        <li>深圳股指  3063.31-22.18 (-0.72%)</li>
+        <li>北京股指  3063.31-22.18 (-0.72%)</li>
+        <li>上海股指  3063.31-22.18 (-0.72%)</li>
+        <li>广州股指  3063.31-22.18 (-0.72%)</li>
+        <li>深圳股指  3063.31-22.18 (-0.72%)</li>
+    </ul>
+
+    <script>
+        //需求：利用childNodes实现各行变色
+        //简单版
+//        var arr = document.getElementsByTagName("li");
+//        for(var i=0;i<arr.length;i++){
+//            if(i%2===0){
+//                arr[i].style.backgroundColor = "#ccc";
+//            }
+//        }
+        //复杂版
+        //获取ul
+        var ul = document.getElementsByTagName("ul")[0];
+        var arr = ul.childNodes;
+
+        //把元素节点重新放入一个新数组
+        var newArr = [];
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].nodeType === 1){
+                newArr.push(arr[i]);
+            }
+        }
+
+        //隔行变色
+        for(var i=0;i<newArr.length;i++){
+            if(i%2!=0){
+                newArr[i].style.backgroundColor = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background: url(image/1.jpg) no-repeat;
+        }
+        .box {
+            height: 165px;
+            padding-top: 35px;
+            text-align: center;
+            background: rgba(255,255,255,0.3);
+        }
+        img {
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="image/1.jpg" alt="" width="200px"/>
+        <img src="image/2.jpg" alt="" width="200px"/>
+        <img src="image/3.jpg" alt="" width="200px"/>
+        <img src="image/4.jpg" alt="" width="200px"/>
+        <img src="image/5.jpg" alt="" width="200px"/>
+    </div>
+
+    <script>
+        //需求：点击图片，body的背景图修改。
+        //步骤：
+        //1.获取事件源
+        //2.绑定事件
+        //3.书写事件驱动程序
+
+        //1.获取事件源
+        var box = document.getElementsByTagName("div")[0];
+        //body的获取js内部帮我们优化完毕
+        var body = document.body;
+        var imgArr = box.children;
+        //2.绑定事件
+        for(var i=0;i<imgArr.length;i++){
+            imgArr[i].index = i;
+            imgArr[i].onclick = function () {
+                //3.书写事件驱动程序
+                //改body的背景
+//                body.style.backgroundImage = "url(image/"+(this.index+1)+".jpg)";
+                body.style.backgroundImage = "url("+this.src+")";
+            }
+        }
+    </script>
+
+</body>
+</html>
