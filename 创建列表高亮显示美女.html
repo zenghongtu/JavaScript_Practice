@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button>创建列表</button>
+    <ul></ul>
+
+    <script>
+        //需求：点击列表，添加四大美女，然后鼠标放到谁上面，谁高亮显示。
+        //思路：创建一个数组，添加内容。利用for循环穿件li标签在添加内容，高亮显示。
+        //步骤：（指定多少个元素的创建最好用for循环）
+        //老三步
+        var btn = document.getElementsByTagName("button")[0];
+        //获取相关元素并定义内容
+        var arr = ["昭君出塞","西施浣纱","贵妃醉酒","貂蝉拜月"];
+        var ul = document.getElementsByTagName("ul")[0];
+        btn.onclick = function () {
+//            ul.innerHTML = "";
+            for(var i=0;i<arr.length;i++){
+                //创建li元素
+                var newLi = document.createElement("li");
+//                newLi.innerHTML += "<li>"+arr[i]+"</li>";
+                //添加到ul中
+                ul.appendChild(newLi);
+            }
+            //获取所有的li标签然后，为他绑定事件，排他思想，高亮显示
+            var liArr = ul.children;
+            //为所有的li绑定事件
+            for(var i=0;i<liArr.length;i++){
+                liArr[i].onmouseover = function () {
+                    //排他思想，高亮显示
+                    for(var j=0;j<liArr.length;j++){
+                        liArr[j].style.backgroundColor = "";
+                    }
+                    this.style.backgroundColor = "red";
+                }
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>
