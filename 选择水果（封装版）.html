@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select {
+            width: 170px;
+            height: 200px;
+            font-size: 16px;
+            background-color: #a4ff43;
+        }
+    </style>
+</head>
+<body>
+    <select name="" id="sel1" size="10" multiple>
+        <option value="0">香蕉</option>
+        <option value="1">苹果</option>
+        <option value="2">鸭梨</option>
+        <option value="3">葡萄</option>
+    </select>
+    <input type="button" value=">>>"/>
+    <input type="button" value="<<<"/>
+    <input type="button" value=">"/>
+    <input type="button" value="<"/>
+    <select name="" id="sel2" size="10" multiple>
+
+    </select>
+
+    <script>
+        //需求1：点击>>>和<<<两个按钮，所有的子元素都跑到对方的标签中。
+
+        var sel1 = document.getElementById("sel1");
+        var sel2 = document.getElementById("sel2");
+        var inpArr = document.getElementsByTagName("input");
+
+        //如果不带参数，我们可以直接绑定一个函数名。但是因为带有参数，所以我们需要匿名函数去调用这个函数。
+        inpArr[0].onclick = function () {
+            fn1(sel1,sel2);
+        }
+        inpArr[1].onclick = function () {
+            fn1(sel2,sel1);
+        }
+        inpArr[2].onclick = function () {
+            fn2(sel1,sel2);
+        }
+        inpArr[3].onclick = function () {
+            fn2(sel2,sel1);
+        }
+        //封装的时候要注意，第一个按钮先获取的是sel1，第二个按钮先获取的是sel2;
+        function fn1(ele1,ele2) {
+            var arr = ele1.children;
+            for(var i=arr.length-1;i>=0;i--){
+                ele2.appendChild(arr[0]);
+            }
+        }
+        //把sel1和sel2设置成两个形参，通过调用的时候先后传递达成不一样的需求
+        function fn2(ele1,ele2) {
+            var arr = ele1.children;
+            for(var i=arr.length-1;i>=0;i--){
+                if(arr[i].selected === true){
+                    arr[i].selected = false;
+                    ele2.appendChild(arr[i]);
+                }
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>

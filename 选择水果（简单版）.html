@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select {
+            width: 170px;
+            height: 200px;
+            font-size: 16px;
+            background-color: #a4ff43;
+        }
+    </style>
+</head>
+<body>
+    <select name="" id="sel1" size="10" multiple>
+        <option value="0">香蕉</option>
+        <option value="1">苹果</option>
+        <option value="2">鸭梨</option>
+        <option value="3">葡萄</option>
+    </select>
+    <input type="button" value=">>>"/>
+    <input type="button" value="<<<"/>
+    <input type="button" value=">"/>
+    <input type="button" value="<"/>
+    <select name="" id="sel2" size="10" multiple>
+
+    </select>
+
+    <script>
+        //需求1：点击>>>和<<<两个按钮，所有的子元素都跑到对方的标签中。
+        //步骤：
+        //1.获取相关元素，并绑定事件
+        //2.获取子元素，整体的添加到另外一边的标签中
+
+        //1.获取相关元素，并绑定事件
+        var sel1 = document.getElementById("sel1");
+        var sel2 = document.getElementById("sel2");
+        var inpArr = document.getElementsByTagName("input");
+
+        inpArr[0].onclick = function () {
+            //2.获取子元素，整体的添加到另外一边的标签中
+            var arr = sel1.children;
+            //循环遍历放入另一侧的select标签中
+            for(var i=arr.length-1;i>=0;i--){
+                //放入sel2中，不能用push，要用appendChild;
+                sel2.appendChild(arr[0]);
+            }
+        }
+        //同理
+        inpArr[1].onclick = function () {
+            //2.获取子元素，整体的添加到另外一边的标签中
+            var arr = sel2.children;
+            //循环遍历放入另一侧的select标签中
+            for(var i=arr.length-1;i>=0;i--){
+                //放入sel2中，不能用push，要用appendChild;
+                sel1.appendChild(arr[0]);
+            }
+        }
+
+        //需求2：点击>和<两个按钮，所有被选定的子元素都跑到对方的标签中。
+        //思路：获取所有子节点，然后循环判断，只有selected属性值为true的选项才能被添加到右侧的select标签中
+        inpArr[2].onclick = function () {
+            //获取所有子节点
+            var arr = sel1.children;
+            //遍历判断数组中的元素selected属性为true的，添加到相反的select标签中
+            for(var i=arr.length-1;i>=0;i--){
+                if(arr[i].selected === true){
+//                    arr[i].selected = false;
+                    sel2.appendChild(arr[i]);
+                }
+            }
+        }
+        //同理
+        inpArr[3].onclick = function () {
+            //获取所有子节点
+            var arr = sel2.children;
+            //遍历判断数组中的元素selected属性为true的，添加到相反的select标签中
+            for(var i=arr.length-1;i>=0;i--){
+                if(arr[i].selected === true){
+//                    arr[i].selected = false;
+                    sel1.appendChild(arr[i]);
+                }
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>

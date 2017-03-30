@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+            width: 500px;
+            margin: 200px auto;
+        }
+        ul {
+            width: 392px;
+            padding: 5px;
+            list-style: none;
+            border: 1px solid red;
+        }
+        li:hover {
+            background-color: red;
+        }
+        input {
+            width: 400px;
+        }
+        button {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text"/>
+        <button>索搜</button>
+        <!--<ul>-->
+            <!--<li>aaaa</li>-->
+            <!--<li>bbb</li>-->
+            <!--<li>ccc</li>-->
+        <!--</ul>-->
+    </div>
+
+    <script>
+        //需求：输入内容(输入事件，键盘弹起事件)，模拟服务器获取内容，创建ul，并在其中显示。
+        //步骤：
+        //1.获取事件源
+        //2.绑定事件
+        //3.书写事件驱动程序
+
+
+
+        //1.获取事件源
+        //模拟服务器获取内容
+        var arr = ["a","ab","abc","abcd","aa","aaa"];
+        var box = document.getElementsByTagName("div")[0];
+        var inp = box.children[0];
+//        var inp = document.getElementsByTagName("input")[0];
+
+        //2.绑定事件(输入内容(输入事件，键盘弹起事件))
+        inp.onkeyup = function () {
+            //创建一个字符串，里面添加满了li和对应的内容。
+            var newArr = [];
+            //我要从数组中查询以input中输入内容为开头的信息，然后添加到li中，转换成字符串。
+            //遍历老数组，然后判断每一项，哪项是以input内容为开头的穿件一个li，塞进去。
+            for(var i=0;i<arr.length;i++){
+                //判断当前项，是否已input内容为开头
+                //获取输入内容input标签的value属性值。
+                var val = this.value;
+                if(arr[i].indexOf(val)===0){
+                    newArr.push("<li>"+arr[i]+"</li>");
+                }
+            }
+            var str = newArr.join("");
+
+            //Bug1.每次创建新的ul之前，先删除旧的ul
+            //只有ul存在我们才能删除ul
+//            var aaa = box.getElementsByTagName("ul")[0];
+            if(box.children[2]){
+                 //只要存在，那么就是object，object类型的数据，只要不是null,对应的boolean值都是true；
+                box.removeChild(box.children[2]);
+            }
+
+            //Bug2.如果input中内容为空，那么久不能在生成ul了。
+            //如果input为空，那么切断函数
+
+            //Bug3.如果arr数组中没有以input为开头的元素。那么切断函数
+            //newArr的长度为0，就能证明以input内容为开头的元素，在arr中不存在
+            if(this.value.length === 0 || newArr.length === 0){
+                //切断函数(不在产生新的ul)
+                return;
+            }
+
+            //3.书写事件驱动程序
+            var ul = document.createElement("ul");
+            //把创建好的内容添加到ul中。
+            ul.innerHTML = str;
+            box.appendChild(ul);
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

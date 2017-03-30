@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            word-wrap: break-word;
+        }
+        .wp {
+            width: 730px;
+            margin: 0px auto;
+        }
+        .mtn {
+            margin-top: 5px!important;
+        }
+        #ct .frame {
+            margin: 0;
+            border: none;
+        }
+
+        .xfs_2 .frame-title, .xfs_2 .frametitle, .xfs_2 .tab-title {
+            background-color: #A90000;
+            background-position: 0 -99px;
+        }
+        .xfs .frame-title, .xfs .frametitle, .xfs .tab-title, .xfs .frame-title a, .xfs .frametitle a, .xfs .tab-title a {
+            color: #FFF!important;
+        }
+
+        .xfs .frame-title, .xfs .frametitle, .xfs .tab-title {
+            border: none;
+            background: transparent url(images/mu.png) repeat-x 0 95;
+        }
+
+        .title {
+            padding: 0 10px;
+            height: 32px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 32px;
+            overflow: hidden;
+        }
+        .block {
+            margin: 10px 10px 0;
+        }
+        ul, menu, dir {
+            display: block;
+            list-style: none;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            -webkit-padding-start: 25px;
+        }
+        .mls li {
+            padding: 0 0 5px;
+            width: 66px;
+            height: 85px;
+        }
+        .ml li {
+            float: left;
+            text-align: center;
+            overflow: hidden;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+            font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+        }
+        .mls p {
+            margin-top: 5px;
+        }
+        .ml p, .ml span {
+            display: block;
+            width: 100%;
+            height: 20px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .mls img {
+            width: 48px;
+            height: 48px;
+        }
+        .ml img {
+            display: block;
+            margin: 0 auto;
+        }
+        a img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wp mtn">
+        <div id="diy3" class="area"><div id="frameipq7f2" class="xfs xfs_2 frame move-span cl frame-1"><div
+                class="title frame-title"><span class="titletext">当前在线用户</span></div><div id="frameipq7f2_left"
+                                                                                          class="column frame-1-c"><div
+                id="frameipq7f2_left_temp" class="move-span temp"></div><div id="portal_block_695"
+                                                                             class="block move-span"><div
+                id="portal_block_695_content" class="dxb_bc">
+            <div class="module cl ml mls" id="users">
+                <ul>
+                    <!--<li>-->
+                        <!--<a href="#" target="_blank"><img src="images/noavatar_small.gif" width="48" height="48" alt="沉眠楚人"></a>-->
+                        <!--<p><a href="#" title="沉眠楚人" target="_blank">沉眠楚人</a></p>-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+        </div></div></div></div></div>
+    </div>
+
+<script>
+        //模拟从服务器获取数据
+        var users = [
+            {"name": "tdxy01","icon":"images/noavatar_small.gif"},
+            {"name": "沉眠楚人","icon":"images/noavatar_small.gif"},
+            {"name": "爱上karina","icon":"images/75_avatar_small.jpg"},
+            {"name": "tdxy01","icon":"images/89_avatar_small.jpg"},
+            {"name": "today","icon":"images/noavatar_small.gif"},
+            {"name": "hlg","icon":"images/noavatar_small.gif"},
+            {"name": "itcast","icon":"images/noavatar_small.gif"},
+            {"name": "heima","icon":"images/noavatar_small.gif"},
+            {"name": "nima","icon":"images/noavatar_small.gif"},
+            {"name": "gege","icon":"images/noavatar_small.gif"},
+            {"name": "nimei","icon":"images/noavatar_small.gif"},
+            {"name": "goodman","icon":"images/noavatar_small.gif"},
+            {"name": "haoren","icon":"images/noavatar_small.gif"},
+            {"name": "yuanxiaojie","icon":"images/noavatar_small.gif"},
+            {"name": "zhengyue","icon":"images/noavatar_small.gif"},
+            {"name": "qishi","icon":"images/noavatar_small.gif"},
+            {"name": "qqtang","icon":"images/noavatar_small.gif"},
+            {"name": "wawawa","icon":"images/noavatar_small.gif"},
+            {"name": "haha","icon":"images/noavatar_small.gif"},
+            {"name": "robot","icon":"images/noavatar_small.gif"},
+            {"name": "XFlute","icon":"images/noavatar_small.gif"},
+            {"name": "lovmilan","icon":"images/noavatar_small.gif"},
+            {"name": "johnny670","icon":"images/noavatar_small.gif"},
+            {"name": "xiaobinbin02","icon":"images/noavatar_small.gif"},
+            {"name": "axxxxx","icon":"images/noavatar_small.gif"}
+        ];
+
+
+        //需求：页面显示所有的在线用户。
+        //思路：模拟服务器获取数据（数组中装着json）.获取ul，把ul的innerHTML属性获取到，然后不间断的往innerHTML属性中赋值。
+                //赋值要求：li标签的内容。
+        //步骤：(获取元素)
+        var div = document.getElementById("users");
+        var ul = div.firstElementChild || div.firstChild;
+//        var ul = div.children[0];
+
+        //1.模拟服务器获取数据（定义数组），通过循环添加元素（定义for）
+        //数组中有多少元素，我们就创建多少个li标签
+        for(var i=0;i<users.length;i++){
+            //2.模拟实验的操作方式。
+            ul.innerHTML += '<li>'+
+                                '<a href="#" target="blank"><img src="'+users[i].icon+'" width="48" height="48" alt="'+users[i].name+'"></a>'+
+                                '<p><a href="#" title="'+users[i].name+'" target="_blank">'+users[i].name+'</a></p>'+
+                            '</li>';
+        }
+
+
+//       var str = "b";
+//        var str2 = "a"+str+"c";
+        //实验；
+        //获取ul
+//    var div = document.getElementById("users");
+//    var ul = div.firstElementChild || div.firstChild;
+//    var ul = div.children[0];
+
+    //往ul中添加li元素以及li元素中的内容
+//        ul.innerHTML += '<li>'+
+//                        '<a href="#" target="_blank"><img src="images/noavatar_small.gif" width="48" height="48" alt="沉眠楚人"></a>'+
+//                        '<p><a href="#" title="沉眠楚人" target="_blank">沉眠楚人</a></p>'+
+//                    '</li>';
+//        ul.innerHTML += '<li>'+
+//                '<a href="#" target="_blank"><img src="images/noavatar_small.gif" width="48" height="48" alt="沉眠楚人"></a>'+
+//                '<p><a href="#" title="沉眠楚人" target="_blank">沉眠楚人</a></p>'+
+//                '</li>';
+//        ul.innerHTML += '<li>'+
+//                '<a href="#" target="_blank"><img src="images/noavatar_small.gif" width="48" height="48" alt="沉眠楚人"></a>'+
+//                '<p><a href="#" title="沉眠楚人" target="_blank">沉眠楚人</a></p>'+
+//                '</li>';
+// str = 'a'+
+//          'b'+
+//          'c'+
+//       'd';
+
+    </script>
+</body>
+</html>
