@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box1 {
+            margin: 0;
+            padding: 5px;
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+        }
+        button {
+            margin: 5px;
+        }
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    <button>运动到200</button>
+    <button>运动到400</button>
+    <div class="box2"></div>
+</div>
+
+
+<script>
+
+    var btnArr = document.getElementsByTagName("button");
+    var box2 = document.getElementsByClassName("box2")[0];
+
+    var timer = null;
+
+    //绑定事件
+    btnArr[0].onclick = function () {
+        animate(200);
+    }
+
+    btnArr[1].onclick = function () {
+        animate(400);
+    }
+
+
+    function animate(target){
+        //要用定时器，先清除定时器
+        clearInterval(timer);
+        //我们要求盒子既能向前又能向后，那么我们的步长就得有正有负
+        //目标值如果大于当前值取正，目标值如果小于当前值取负
+        var speed = target>box2.offsetLeft?10:-10;
+        timer = setInterval(function () {
+            //在执行之前就获取当前值和目标值之差
+            var val = target - box2.offsetLeft;
+            box2.style.left = box2.offsetLeft + speed + "px";
+            //目标值和当前值只差如果小于步长，那么就不能在前进了
+            //因为步长有正有负，所有转换成绝对值来比较
+            if(Math.abs(val)<Math.abs(speed)){
+                box2.style.left = target + "px";
+                clearInterval(timer);
+            }
+        },30)
+    }
+
+
+</script>
+</body>
+</html>
