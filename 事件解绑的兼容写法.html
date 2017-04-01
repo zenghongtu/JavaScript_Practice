@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button>赋诗</button>
+
+
+<script>
+
+    var btn = document.getElementsByTagName("button")[0];
+
+    EventListen = {
+        addEvent: function (ele,fn,str) {
+            //通过判断调用的方式兼容IE678
+            //判断浏览器是否支持该方法，如果支持那么调用，如果不支持换其他方法
+            if(ele.addEventListener){
+                //直接调用
+                ele.addEventListener(str,fn);
+            }else if(ele.attachEvent){
+                ele.attachEvent("on"+str,fn);
+            }else{
+                //在addEventListener和attachEvent都不存在的情况下，用此代码
+                ele["on"+str] = fn;
+            }
+        },
+        removeEvent: function (ele,fn,str) {
+            if(ele.removeEventListener){
+                ele.removeEventListener(str,fn);
+            }else if(ele.detachEvent){
+                ele.detachEvent("on"+str,fn);
+            }else{
+                ele["on"+str] = null;
+            }
+        }
+    }
+
+//    btn.addEventListener("click",fn);
+    EventListen.addEvent(btn,fn,"click");
+
+    EventListen.removeEvent(btn,fn,"click");
+
+    function fn(){
+        alert(1);
+    }
+    //第一种
+//    btn.onclick = function () {
+//        alert(1);
+//    }
+
+
+//    btn.addEventListener("click",fn);
+//    btn.attachEvent("onclick",fn);
+
+
+//    btn.onclick = null;
+
+    //第二种
+//    btn.removeEventListener("click",fn);
+//    btn.detachEvent("onclick",fn);
+</script>
+</body>
+</html>

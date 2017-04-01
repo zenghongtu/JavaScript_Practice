@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div></div>
+    <div class="box"></div>
+    <div id="box"></div>
+    <div class="box"></div>
+    <div></div>
+
+
+
+<script>
+
+    $("#box").style.backgroundColor = "red";
+
+    var claArr = $(".box");
+    for(var i=0;i<claArr.length;i++){
+        claArr[i].style.backgroundColor = "yellow";
+    }
+
+    var divArr = $("div");
+    for(var i=0;i<divArr.length;i++){
+        divArr[i].style.border = "2px solid #000";
+    }
+
+    function $(str){
+        var str1 = str.charAt(0);
+        if(str1==="#"){
+            return document.getElementById(str.slice(1));
+        }else if(str1 === "."){
+            return document.getElementsByClassName(str.slice(1));
+        }else{
+            return document.getElementsByTagName(str);
+        }
+    }
+
+</script>
+</body>
+</html>

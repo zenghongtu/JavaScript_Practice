@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+//    截取字符串"我爱你中国，我亲爱的母亲"，中的"中国，我亲爱的"；
+    var str1 = "我爱你中国，我亲爱的母亲";
+    var index1 = str1.indexOf("中");
+    var index2 = str1.indexOf("的");
+    console.log(str1.slice(index1,index2+1));
+
+//    "abcoefoxyozzopp"查找字符串中所有o出现的位置
+    var str2 = "abcoefoxyozzopp";
+    for(var i=0;i<str2.length;i++){
+        //如果指定位置的符号=== "o"
+        //str2[i]
+        if( str2.charAt(i)==="o"){
+            console.log(i);
+        }
+    }
+
+//    把字符串中所有的o替换成!
+    console.log(str2);
+    console.log(str2.replace(/o/g,"!"));
+
+
+//    判断一个字符串中出现次数最多的字符，统计这个次数
+    //定义一个json，然后判断json中是够有该属性，如果有该属性，那么值+1;否则创建一个该属性，并赋值为1；
+    var json = {};
+    for(var i=0;i<str2.length;i++){
+        //判断：如果有该属性，那么值+1;否则创建一个该属性，并赋值为1；
+        var key = str2.charAt(i);
+        if(json[key] === undefined){
+            json[key] = 1;
+        }else{
+            json[key] += 1;
+        }
+    }
+    console.log(json);
+
+
+
+    //获取json中属性值最大的选项
+//    var maxKey = "";
+//    var maxValue = 0;
+//    for(var k in json){
+////        if(maxKey == ""){
+////            maxKey = k;
+////            maxValue = json[k];
+////        }else{
+//            if(json[k]>maxValue){
+//                maxKey = k;
+//                maxValue = json[k];
+//            }
+////        }
+//    }
+//    console.log(maxKey);
+//    console.log(maxValue);
+
+</script>
+</body>
+</html>

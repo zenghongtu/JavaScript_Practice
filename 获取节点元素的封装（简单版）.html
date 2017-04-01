@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div></div>
+    <div class="box"></div>
+    <div id="box"></div>
+    <div class="box"></div>
+    <div></div>
+
+
+
+<script>
+    //需求：一个方法，包含三种获取元素节点的功能。通过传递参数的不同，来决定使用哪种获取方法。
+        //例如： "ibox":  getElementById();
+        //例如： "cbox":  getElementsByClassName();
+        //例如： "tbox":  getElementsByTagName();
+                //化简：使用类似css获取的方式表明使用哪种方式来获取：
+                    //   "#box"  getElementById();
+                    //   ".box"  getElementsByClassName();
+                    //   "div"   getElementsByTagName();
+    //验证：
+    getEle("#box").style.backgroundColor = "red";
+
+    var claArr = getEle(".box");
+    for(var i=0;i<claArr.length;i++){
+        claArr[i].style.backgroundColor = "yellow";
+    }
+
+    var divArr = getEle("div");
+    for(var i=0;i<divArr.length;i++){
+        divArr[i].style.border = "2px solid #000";
+    }
+
+    //思路：封装一个方法，然后判断第一个字符，如果是#用id，如果是.用className,否则用tagName
+    //步骤：
+    //1.封装一个方法，获取参数的第一个字符
+    //2.判断第一个字符是#走第一个逻辑，是.走第二个逻辑，如果都不是那么走最后一个逻辑
+    //3.隐藏：
+
+    //1.封装一个方法，获取参数的第一个字符
+    function getEle(str){
+        //2.判断第一个字符是#走第一个逻辑，是.走第二个逻辑，如果都不是那么走最后一个逻辑
+        var str1 = str.charAt(0);
+        if(str1==="#"){
+            //3.隐藏：
+            //返回获取的元素。（因为传递过来的值带有#，所以我们要从第二项开始截取并搜索）
+            return document.getElementById(str.slice(1));
+        }else if(str1 === "."){
+            return document.getElementsByClassName(str.slice(1));
+        }else{
+            return document.getElementsByTagName(str);
+        }
+    }
+
+</script>
+</body>
+</html>

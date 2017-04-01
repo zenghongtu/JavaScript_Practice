@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button>赋诗</button>
+
+
+<script>
+
+    var btn = document.getElementsByTagName("button")[0];
+
+    //火狐谷歌IE9+支持addEventListener
+//    btn.addEventListener("click",fn1);
+//    btn.addEventListener("click",fn2);
+
+    //IE678支持attachEvent
+//    btn.attachEvent("onclick",fn1);
+//    btn.attachEvent("onclick",fn2);
+
+    //兼容写法
+    EventListen = {
+        addEvent: function (ele,fn,str) {
+            //通过判断调用的方式兼容IE678
+            //判断浏览器是否支持该方法，如果支持那么调用，如果不支持换其他方法
+            if(ele.addEventListener){
+                //直接调用
+                ele.addEventListener(str,fn);
+            }else if(ele.attachEvent){
+                ele.attachEvent("on"+str,fn);
+            }else{
+                //在addEventListener和attachEvent都不存在的情况下，用此代码
+                ele["on"+str] = fn;
+            }
+        }
+    }
+
+
+    EventListen.addEvent(btn,fn1,"click")
+    EventListen.addEvent(btn,fn2,"click")
+
+
+
+    function fn1(){
+        console.log("九尺龙泉万卷书，上天生我意何如。");
+    }
+    function fn2(){
+        console.log("不能报国平天下，枉为男儿大丈夫。");
+    }
+
+</script>
+</body>
+</html>
